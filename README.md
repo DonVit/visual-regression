@@ -18,10 +18,16 @@ Run setup
 npm run setup
 ```
 
-Run tests
+Run tests 2 times to see screenshot diffs
 
 ```sh
 npm run test
+```
+
+Check diff images on below path
+
+```sh
+reports/
 ```
 
 Notes:
