@@ -3,7 +3,7 @@ const blink = require('blink-diff');
 
 describe('webdriver.io page', () => {
 
-    afterEach(async function () {
+    afterEach(function () {
         const newFileName = '_new.png';
         const oldFileName = '_old.png';
         const difFileName = '_dif.png';
@@ -28,31 +28,29 @@ describe('webdriver.io page', () => {
 
         //save current screenshot
         browser.saveScreenshot(newScreenshotName)
-        .then(()=>{        
-            //compare new screen with old one and create diff 
-            if (fs.existsSync(newScreenshotName) && fs.existsSync(oldScreenshotName)) {
-                const diff = new blink({
-                    imageAPath: newScreenshotName,
-                    imageBPath: oldScreenshotName,
-                    thresholdType: blink.THRESHOLD_PERCENT,
-                    threshold: 0.01, // 1% threshold
-                    imageOutputPath: difScreenshotName
-                });
 
-                diff.log = function (text) {
-                    console.error('diff log', text);
-                };
-                
-                diff.run(function (error, result) {
-                    if (error) {
-                        throw error;
-                    } else {
-                        console.log(diff.hasPassed(result.code) ? 'Passed' : 'Failed');
-                        console.log('Found ' + result.differences + ' differences.');
-                    }
-                });
-            }
-        }) 
+        if (fs.existsSync(newScreenshotName) && fs.existsSync(oldScreenshotName)) {
+            const diff = new blink({
+                imageAPath: newScreenshotName,
+                imageBPath: oldScreenshotName,
+                thresholdType: blink.THRESHOLD_PERCENT,
+                threshold: 0.01, // 1% threshold
+                imageOutputPath: difScreenshotName
+            });
+
+            diff.log = function (text) {
+                console.error('difff log', text);
+            };
+            
+            diff.run(function (error, result) {
+                if (error) {
+                    throw error;
+                } else {
+                    const testResult = diff.hasPassed(result.code) ? 'Passed' : 'Failed';
+                    console.log(`Test: ${testName}. Test Result ${testResult}. Found ${result.differences} differences.`);
+                }
+            });
+        }
     })
 
     it('TC01 should have the right title of webdriver.io', () => {

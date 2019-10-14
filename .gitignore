@@ -4,4 +4,4 @@ reports
 
 
 package-lock.json
-wdio-conf.js
+wdio.conf.js
