@@ -24,10 +24,22 @@ Run tests 2 times to see screenshot diffs
 npm run test
 ```
 
-Check diff images on below path
+Check diff images in `reports` folder below
 
 ```sh
-reports/
++---TC01_should_have_the_right_title_of_webdriver.io
+|       TC01_should_have_the_right_title_of_webdriver.io_dif.png
+|       TC01_should_have_the_right_title_of_webdriver.io_new.png
+|       TC01_should_have_the_right_title_of_webdriver.io_old.png
+|
++---TC02_should_have_the_right_title_of_google.com
+|       TC02_should_have_the_right_title_of_google.com_dif.png
+|       TC02_should_have_the_right_title_of_google.com_new.png
+|       TC02_should_have_the_right_title_of_google.com_old.png
+|
+\---TC03_should_have_the_right_title_of_bbc.com
+        TC03_should_have_the_right_title_of_bbc.com_new.png
+        TC03_should_have_the_right_title_of_bbc.com_old.png
 ```
 
 Notes:
